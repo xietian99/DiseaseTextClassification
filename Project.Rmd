@@ -15,8 +15,7 @@ Every day, work-related injury records are generated. **In order to alleviate th
 
 ### <span style = "color:purple">Goal</span>
 
-Implementing various 
-
+This project represents a **text classification** problem that is expected to be solved using efficient **big dataset** handling techniques and various **classificiation algorithms**. Through exploration, we hope to achieve better accuracy and higher efficiency in injury records classification.
 
 
 ### <span style = "color:purple">Data</span>
