@@ -1,8 +1,7 @@
 ---
-title: "Final Report"
+title: "Disease Text Classification"
 author: "XIE Tian, WANG Chang, WANG Sidi"
 date: "12/19/2019"
-font size: 8pt
 output:
   pdf_document: default
   html_document: default
@@ -23,15 +22,14 @@ library(rmarkdown)
 library(knitr)
 ```
 
-### <span style = "color:purple">Overview</span>
+### <span style = "color:purple">1. Overview</span>
 \small
 Every day, work-related injury records are generated. **In order to alleviate the human effort expended with coding such records**, the Centers for Disease Control and Prevention (CDC) National Institute for Occupational Safety and Health (NIOSH), in close partnership with the Laboratory for Innovation Science at Harvard (LISH), is interested in **improving their NLP/ML model to automatically read injury records and classify them** according to the Occupational Injury and Illness Classification System (OIICS). <span style = "color:purple">Our project is inspired by this initiative.</span>
 
-### <span style = "color:purple">Goal</span>
 
 This project represents a **text classification** problem that is expected to be solved using efficient **big dataset** handling techniques and various **classificiation algorithms**. Through exploration, we hope to achieve better accuracy and higher efficiency in injury records classification.
 
-### <span style = "color:purple">Data</span>
+### <span style = "color:purple">2. Data Inspection</span>
 
 A random sample of 153,956 records with the outcome event column included. The data have 4 column (text, age, sex and a response label): We have 48 unique OIICS response label in total. 
 
@@ -47,7 +45,7 @@ summary(Train$age)
 \small
 The response variable is hierarchical (for example, if one label is 32, then it belongs to the third class "Fires and Explosions", and the second type)
 
-```{r echo=FALSE, out.width='50%', fig.align="center"}
+```{r echo=FALSE, out.width='60%', fig.align="center"}
 knitr::include_graphics('./plot/response_data.png')
 ```
 
