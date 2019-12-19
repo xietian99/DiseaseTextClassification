@@ -1,0 +1,26 @@
+---
+title: "Final Report"
+author: "XIE Tian, WANG Chang, WANG Sidi"
+date: "12/19/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview [1/3] Sidi
+
+```{r cars}
+summary(cars)
+```
+
+## Data [2/3] Sidi
+
+## Data Processing and Prelimiary Analysis [1] Tian
+
+## Approach [1] Tian, Chang
+
+## Result [1] Tian,, Chang, Sidi
+
+## Conclusion and Future [1/3] Sidi
