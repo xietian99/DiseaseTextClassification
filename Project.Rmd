@@ -1,5 +1,7 @@
 ---
-title: "Occupational Injury and Illness Text Classification"
+title: "Final Report"
+author: "XIE Tian, WANG Chang, WANG Sidi"
+date: "12/19/2019"
 output: html_document
 ---
 
@@ -7,15 +9,18 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**BIOSTAT625 Final Group Project: Wang Chang, Xie Tian, Wang Sidi**
+## Overview [1/3] Sidi
 
-### <span style = "color:purple">Overview</span>
+```{r cars}
+summary(cars)
+```
 
-Every day, work-related injury records are generated. **In order to alleviate the human effort expended with coding such records**, the Centers for Disease Control and Prevention (CDC) National Institute for Occupational Safety and Health (NIOSH), in close partnership with the Laboratory for Innovation Science at Harvard (LISH), is interested in **improving their NLP/ML model to automatically read injury records and classify them** according to the Occupational Injury and Illness Classification System (OIICS). <span style = "color:purple">Our project is inspired by this initiative.</span>
+## Data [2/3] Sidi
 
-### <span style = "color:purple">Goal</span>
+## Data Processing and Prelimiary Analysis [1] Tian
 
-This project represents a **text classification** problem that is expected to be solved using efficient **big dataset** handling techniques and various **classificiation algorithms**. Through exploration, we hope to achieve better accuracy and higher efficiency in injury records classification.
+## Approach [1] Tian, Chang
 
+## Result [1] Tian,, Chang, Sidi
 
-### <span style = "color:purple">Data</span>
+## Conclusion and Future [1/3] Sidi
