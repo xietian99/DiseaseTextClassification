@@ -1,5 +1,5 @@
 ---
-title: "Disease Text Classification"
+title: "Injury Text Classification"
 author: "XIE Tian, WANG Chang, WANG Sidi"
 date: "12/19/2019"
 output:
@@ -20,6 +20,11 @@ library(ROCR)
 library(glmnet)
 library(rmarkdown)
 library(knitr)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(png)
+
 ```
 
 ### <span style = "color:purple">1. Overview</span>
@@ -43,16 +48,37 @@ summary(Train$age)
 
 ```
 \small
-The response variable is hierarchical (for example, if one label is 32, then it belongs to the third class "Fires and Explosions", and the second type)
+The response variable is hierarchical (for example, if one label is 32, then it belongs to the third class "Fires and Explosions", and the second type). Figure on the left is showing the 7 first level labels and a few second level labels (48 in total). Although there are 48 possible outcomes, the frequencies is extremely unbalanced, as shown in the figure on the right. This needs to be taken into account while training different models. 
 
-```{r echo=FALSE, out.width='60%', fig.align="center"}
-knitr::include_graphics('./plot/response_data.png')
+```{r, include=FALSE}
+
+load(file = "data/vector.rda")
+
+VectorCountPlot <- ggplot(vector, aes(x = V2, y = sample_vector)) + geom_bar(stat = "identity", color = "white", fill = "lightblue")
+print(VectorCountPlot + ggtitle("Count of Each Category") + labs(y = "count", x = "Category Label"))
+ggsave("plot/vector.png")
+
+img1 <- rasterGrob(as.raster(readPNG("./plot/response_data.png")), interpolate = FALSE)
+img2 <- rasterGrob(as.raster(readPNG("./plot/vector.png")), interpolate = FALSE)
+
 ```
 
-```{r}
+```{r echo=FALSE, out.width='100%', fig.align="center"}
+grid.arrange(img1, img2, ncol = 2)
+```
+```{r echo=FALSE, fig.align="center"}
 
+load(file = "data/freq.rda")
 
+sorted_freqs_1 = sort(freqs_1, decreasing = TRUE)
+sorted_freqs_1 = data.frame(names(sorted_freqs_1), sorted_freqs_1)[1:60,]
+rownames(sorted_freqs_1) <- c(1:60)
+colnames(sorted_freqs_1) <- c("word","frequency")
 
+sorted_freqs_1$word  <- as.character(sorted_freqs_1$word)
+sorted_freqs_1$word <- factor(sorted_freqs_1$word, levels = c(sorted_freqs_1$word))
+
+ggplot(sorted_freqs_1, aes(x = factor(word), y = frequency, group = 1)) + geom_line(color = "lightblue", size = 3.5) + geom_point(color = "lightblue", size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1), plot.title = element_text(hjust = 0.5)) + ggtitle("Word Frequency")
 
 ```
 
