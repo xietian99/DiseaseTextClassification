@@ -3,16 +3,16 @@ title: "Injury Text Classification"
 author: "XIE Tian, WANG Chang, WANG Sidi"
 date: "12/19/2019"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r,warning=FALSE,include=FALSE}
+```{r, warning = FALSE,include = FALSE}
 library(readr)
 library(tm)
 library(SnowballC)
@@ -39,9 +39,9 @@ This project represents a **text classification** problem that is expected to be
 A random sample of 153,956 records with the outcome event column included. The data have 4 column (text, age, sex and a response label): We have 48 unique OIICS response label in total. Given that the records were collected through document scanning, many spelling errors are included. For example, "S P" in record 3 (shown below).   
 
 \scriptsize
-```{r, size='scriptsize'}
+```{r, size = 'scriptsize'}
 
-Train <- read.csv("CDC_Text_ClassificationChallenge_TrainData.csv")
+Train <- read.csv("./data/CDC_Text_ClassificationChallenge_TrainData.csv")
 head(Train, 3)
 dim(Train)[1]
 summary(Train$age)
@@ -50,7 +50,7 @@ summary(Train$age)
 \small
 The response variable is hierarchical (for example, if one label is 32, then it belongs to the third class "Fires and Explosions", and the second type). Figure on the left is showing the 7 first level labels and a few second level labels (48 in total). Although there are 48 possible outcomes, the frequencies is extremely unbalanced, as shown in the figure on the right. This needs to be taken into account while training different models. 
 
-```{r, include=FALSE}
+```{r, include = FALSE}
 
 load(file = "data/vector.rda")
 
@@ -63,10 +63,10 @@ img2 <- rasterGrob(as.raster(readPNG("./plot/vector.png")), interpolate = FALSE)
 
 ```
 
-```{r echo=FALSE, out.width='100%', fig.align="center"}
+```{r echo = FALSE, out.width = '100%', fig.align = "center"}
 grid.arrange(img1, img2, ncol = 2)
 ```
-```{r echo=FALSE, out.width='65%', fig.align="center"}
+```{r echo = FALSE, out.width = '65%', fig.align = "center"}
 
 load(file = "data/freq.rda")
 
