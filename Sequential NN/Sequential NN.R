@@ -26,6 +26,7 @@ model <- keras_model_sequential() %>%
     metrics = "accuracy"
   )
 
+# prepare training data and testing data
 x <- as.matrix(M_dgt) 
 y <- disease_factor
 
@@ -35,6 +36,7 @@ train_y <- y[1:100000,]
 test_x <- x[100001:153956,]
 test_y <- y[100001:153956,]
 
+# train model
 history <- model %>%
   fit(
     train_x,
@@ -44,6 +46,7 @@ history <- model %>%
     # validation_split = 0.3
   )
 
+# evaluate model performance
 result <- model %>% evaluate(test_x, test_y)
 
 # load training outcome
