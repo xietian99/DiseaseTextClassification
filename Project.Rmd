@@ -36,7 +36,7 @@ This project represents a **text classification** problem that is expected to be
 
 ### <span style = "color:purple">2. Data Inspection</span>
 
-A random sample of 153,956 records with the outcome event column included. The data have 4 column (text, age, sex and a response label): We have 48 unique OIICS response label in total. 
+A random sample of 153,956 records with the outcome event column included. The data have 4 column (text, age, sex and a response label): We have 48 unique OIICS response label in total. Given that the records were collected through document scanning, many spelling errors are included. For example, "S P" in record 3 (shown below).   
 
 \scriptsize
 ```{r, size='scriptsize'}
@@ -54,7 +54,7 @@ The response variable is hierarchical (for example, if one label is 32, then it 
 
 load(file = "data/vector.rda")
 
-VectorCountPlot <- ggplot(vector, aes(x = V2, y = sample_vector)) + geom_bar(stat = "identity", color = "white", fill = "lightblue")
+VectorCountPlot <- ggplot(vector, aes(x = V2, y = sample_vector)) + geom_bar(stat = "identity", color = "white", fill = "lightblue") + theme(plot.title = element_text(hjust = 0.5))
 print(VectorCountPlot + ggtitle("Count of Each Category") + labs(y = "count", x = "Category Label"))
 ggsave("plot/vector.png")
 
@@ -66,19 +66,19 @@ img2 <- rasterGrob(as.raster(readPNG("./plot/vector.png")), interpolate = FALSE)
 ```{r echo=FALSE, out.width='100%', fig.align="center"}
 grid.arrange(img1, img2, ncol = 2)
 ```
-```{r echo=FALSE, fig.align="center"}
+```{r echo=FALSE, out.width='65%', fig.align="center"}
 
 load(file = "data/freq.rda")
 
 sorted_freqs_1 = sort(freqs_1, decreasing = TRUE)
-sorted_freqs_1 = data.frame(names(sorted_freqs_1), sorted_freqs_1)[1:60,]
-rownames(sorted_freqs_1) <- c(1:60)
+sorted_freqs_1 = data.frame(names(sorted_freqs_1), sorted_freqs_1)[1:50,]
+rownames(sorted_freqs_1) <- c(1:50)
 colnames(sorted_freqs_1) <- c("word","frequency")
 
 sorted_freqs_1$word  <- as.character(sorted_freqs_1$word)
 sorted_freqs_1$word <- factor(sorted_freqs_1$word, levels = c(sorted_freqs_1$word))
 
-ggplot(sorted_freqs_1, aes(x = factor(word), y = frequency, group = 1)) + geom_line(color = "lightblue", size = 3.5) + geom_point(color = "lightblue", size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1), plot.title = element_text(hjust = 0.5)) + ggtitle("Word Frequency")
+ggplot(sorted_freqs_1, aes(x = factor(word), y = frequency, group = 1)) + geom_line(color = "lightblue", size = 3.5) + geom_point(color = "lightblue", size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1), plot.title = element_text(hjust = 0.5)) + ggtitle("Word Frequency") + labs(y = "frequency", x = "word")
 
 ```
 
