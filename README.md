@@ -13,4 +13,5 @@ Model Result are listed below:
 | BERT  | 0.93| 0.97 | 0.87 | 70h; 0.67h(GPU) |
 
 Contributor: Chang WANG (wangchan@umich.edu), Sidi WANG(sidiwang@umich.edu), Tian XIE (xiet@umich.edu). 
+
 Contribution: All our three conducted data prepossessing and preliminary analysis at the exploratory stage. Logistic is mainly contributed by Chang, Sequential NN mainly by Sidi and BERT mainly by Tian. The final report are drafted by all.
