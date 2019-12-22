@@ -5,9 +5,11 @@ we focused on Logistic, SequentialNN and BERT models.
 The code for each model are logisitic_cluster.R, Sequential NN.R, and Final625_BERT.ipynb.
 
 The result are listed below:
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="./plot/Logreg_acc.png"  width="260" height="260" ></div>
+<div style="float:middle;border:solid 1px 000;margin:2px;"><img src="./plot/Logreg_acc.png"  width="260" height="260" ></div>
+
 <div style="float:middle;border:solid 1px 000;margin:2px;"><img src="./SequentialNN/SNNplot.png"  width="260" height="260" ></div>
-<div style="float:right;border:solid 1px 000;margin:2px;"><img src="./Bert/bertPlot.png"  width="260" height="260" ></div>
+
+<div style="float:middle;border:solid 1px 000;margin:2px;"><img src="./Bert/bertPlot.png"  width="260" height="260" ></div>
 
 
 
