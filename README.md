@@ -2,7 +2,7 @@
 This is a final project for course Biostat 625 at Umich. In this injury records classification problem,
 we focused on Logistic, SequentialNN and BERT models.
 
-The code for each model are saved in each corresponding folder, and they are logisitic_cluster.R, Sequential NN.R, and [Final625_BERT.ipynb](https://colab.research.google.com/drive/1rtYdMymsIvMRk5-V1jJc_4dh3QXKGur6?authuser=1).
+The code for each model are saved in each corresponding folder, and they are logisitic_cluster.R, Sequential NN.R, and Final625_BERT.ipynb.
 
 Model Result are listed below:
 
