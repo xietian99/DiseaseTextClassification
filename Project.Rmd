@@ -3,7 +3,7 @@ title: "Injury Records Text Classification"
 author: "XIE Tian, WANG Chang, WANG Sidi"
 date: "12/19/2019"
 output:
-  #html_document: default
+  # html_document: default
   pdf_document: default
 ---
 
@@ -70,7 +70,7 @@ grid.arrange(img1, img2, ncol = 2)
 ```
 
 
-### <span style = "color:purple">3. Data Processing and Prelimiary Analysis</span> 
+### <span style = "color:purple">3. Data Preprocessing and Prelimiary Analysis</span> 
 
 **a) Data Cleaning **
 
