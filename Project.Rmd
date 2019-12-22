@@ -3,8 +3,8 @@ title: "Injury Text Classification"
 author: "XIE Tian, WANG Chang, WANG Sidi"
 date: "12/19/2019"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include = FALSE}
@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r, warning = FALSE,include = FALSE}
+
 library(readr)
 library(tm)
 library(SnowballC)
@@ -66,8 +67,11 @@ img2 <- rasterGrob(as.raster(readPNG("./plot/vector.png")), interpolate = FALSE)
 ```{r echo = FALSE, out.width = '100%', fig.align = "center"}
 grid.arrange(img1, img2, ncol = 2)
 ```
-```{r echo = FALSE, out.width = '65%', fig.align = "center"}
 
+
+### <span style = "color:purple">3. Data Processing and Prelimiary Analysis</span>  [1] Tian
+
+```{r echo = FALSE, out.width = '55%', fig.align = "center"}
 load(file = "data/freq.rda")
 
 sorted_freqs_1 = sort(freqs_1, decreasing = TRUE)
@@ -83,12 +87,64 @@ ggplot(sorted_freqs_1, aes(x = factor(word), y = frequency, group = 1)) + geom_l
 ```
 
 
+**a) Dimension reduction:** 
+For traditional methods, we will use document-wrod matrix as input. Although we use **sparse matrix** to store it, it is still "big". Thus we may try some dimension reduction methods:
+
+   + We tried **LDA (Linear Discriminant Analysis)** to project high-dimensional, sparse data to a low-dimensional, dense space, supervised by training data;
+   + We also tried **ANOVA test** on every single word and keep the significant ones only, which can reduce the dimension from 6000 to 2000.
+   + But both methods reduce the accuracy in fact, due to the loss of information. Considering **lasso penalty** can choose the informative feature automatically, we finally decided to use lasso penalty only rather than any other dimension reductions.
+For NLP methods, they don't process data as matrix, thus their corresponding "dimension reduction" is just different kinds of pre-processings.
 
 
-## Data Processing and Prelimiary Analysis [1] Tian
+### <span style = "color:purple">4. Approach</span>  [1] Tian, Chang, Sidi
 
-## Approach [1] Tian, Chang
+**a) Logistic regression**
 
+Firstly, we applied logistic regression. The logistic regression assume that data have the following distributions:$$ P(Y_i=j) = \frac{exp(x_i^T\beta_j)}{\sum_{m=1}^{k}exp(x_i^T\beta_m)}$$
+We want to maxmize the object function:$$max \ Likelihood = \Pi_{i=1}^{n} \Pi_{j=1}^{k}[P(Y_i=j)]^{1_{Y_i=j}}$$
+Or minimize the loss function:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)]$$
+
+  **Logistic regression with penalty**
+
+Group lasso:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)] + \lambda \sum_{i=1}^{p} \sqrt{ \sum_{j=1}^{k} \beta_{i,j}^2 }$$
+
+**Why lasso?** Automatically feature selecting and easy for tunning.
+**Why group lasso?** If one word is useful to predict one class, it is also useful to predict others. (For example, "fire" is positive to class "burn", then it is somehow negative to other class.)
+
+
+**Application of Logistic Regression**
+
+We use sparse matrix as input to fit the logistic regression.
+
+At first we use **cv.glmnet** to perform logistic regression, but it will warn us the **unconvergence** (due to huge data), and fail to do all the cross validation. (In fact, when data is big, cv.glmnet's stopping criteria seems to be somehow arbitary and we can't check the convergence. Its accuracy is also between 0.75 - 0.79).
+
+Thus we use **biostatistic cluster** to train the logistic model with **our own codes**, we only give a version of "logistic_cluster" here. Since we use group lasso, which still have one parameter $\lambda$, we show three results with different penalty in the following plot. (the training accuracy is not main concern, thus we show the test accuracy only)
+
+```{r, echo = FALSE, fig.align = "center", out.width = '55%'}
+
+knitr::include_graphics("./plot/Logreg_acc.png")
+
+```
+
+**b) Neural Network: Sequential Model**
+
+**Keras** is a high-level tool for coding and training **neural networks**. Here we use **Keras package** in r to fit a simple sequential model to our injury data. A **Neural Network** is a machine-learning algorithm made up of individual nodes called neurons. Neurons are arranged into a series of groups called **layers**. Nodes in each layer are connected to nodes in the following layer. Data flows from the input to the output along these connections.
+
+The easiest way to build a neural network is to use the **Sequential Model** Api, which represents a linear stack of layers. Choosing the right training features is the key. A Neural Network containing two hidden layers is shown below on the left.
+
+```{r, echo = FALSE, fig.align = "center"}
+
+img3 <- rasterGrob(as.raster(readPNG("./Sequential NN/NN.png")), interpolate = FALSE)
+img4 <- rasterGrob(as.raster(readPNG("./Sequential NN/SNNplot.png")), interpolate = FALSE)
+grid.arrange(img3, img4, ncol = 2)
+
+```
+Sequential Models of different layers have been fitted to categorize injury records. After a very time-consuming tuning process, a single layer model showed the best testing accuracy. As shown in the figure above (on the right), even though training accuracy keeps increasing as epoch increases, testing accuracy stays at around **0.83** after epoch = 4 .
+
+
+```
 ## Result [1] Tian, Chang, Sidi
+
+
 
 ## Conclusion and Future [1/3] Sidi

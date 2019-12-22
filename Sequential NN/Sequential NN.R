@@ -2,7 +2,8 @@ library(keras)
 library(tidyverse)
 library(tensorflow)
 
-load(file="NNdata.rda")
+# load data input
+load(file="./Sequential NN/NNdata.rda")
 
 # specify model features
 max_features <- 35000
