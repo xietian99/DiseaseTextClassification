@@ -91,7 +91,7 @@ Below are two word cloud examples for class 1: *Violence and other injuries by a
 ![Word Frequency Cloud for Different Categories](./wordcloud/WC1_WC4.png) 
 
 
-**a) Dimension reduction:** 
+**c) Dimension reduction:** 
 
 For traditional methods, we will use document-word matrix as input. Although we use **sparse matrix** to store it, it is still "big". Thus we may try some dimension reduction methods:
 
@@ -103,6 +103,7 @@ NLP methods do not process data as matrix, thus their corresponding "dimension r
 
 
 ### <span style = "color:purple">4. Models and Results </span> 
+
 We applied three representative methods to this classification problem, where *logistic* methods are popular bacause of feasible interpretation, *Sequential NN* is a simple basic model with only 2 dense layers, and *BERT* is a complex pre-trained model.
 Below is the pipeline of our whole work. 
 
@@ -115,12 +116,14 @@ Firstly, we applied logistic regression. The logistic regression assume that dat
 We want to **maxmize** the object function:$$max \ Likelihood = \Pi_{i=1}^{n} \Pi_{j=1}^{k}[P(Y_i=j)]^{1_{Y_i=j}}$$
 Or **minimize** the loss function:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)]$$
 
-  **Logistic regression with penalty,** Group lasso:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)] + \lambda \sum_{i=1}^{p} \sqrt{ \sum_{j=1}^{k} \beta_{i,j}^2 }$$
+  **Logistic regression with penalty, Group lasso:** $$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)] + \lambda \sum_{i=1}^{p} \sqrt{ \sum_{j=1}^{k} \beta_{i,j}^2 }$$
 
-We applied lasso to automatically select features. If one word is useful to predict one class, it can also be useful to predict others (e.g. “fire” is positive to class “burn”, then it is somehow negative to other class). Given that the sparse matrix still have many useless feature (i.e. noise), we apply group lasso to conquer is issue.
+We applied lasso to automatically select features. If one word is useful to predict one class, it can also be useful to predict others (e.g. “fire” is positive to class “burn”, then it is somehow negative to other class). Given that the sparse matrix still have many useless feature (i.e. noise), we apply group lasso to conquer this issue.
 
 
-**Application of Logistic Regression**: We use sparse matrix as input to fit the logistic regression.
+**Application of Logistic Regression**: 
+
+We use sparse matrix as input to fit the logistic regression.
 
 At first we use **cv.glmnet** to perform logistic regression, but it warned us with **unconvergence** (due to huge data), and failed to conduct any cross validation. (In fact, when data is big, cv.glmnet's stopping criteria seems to be arbitary and we cannot check the convergence. Its accuracy is between 0.75 - 0.79).
 
