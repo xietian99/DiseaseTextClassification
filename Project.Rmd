@@ -3,8 +3,8 @@ title: "Injury Text Classification"
 author: "XIE Tian, WANG Chang, WANG Sidi"
 date: "12/19/2019"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include = FALSE}
@@ -88,7 +88,7 @@ ggplot(sorted_freqs_1, aes(x = factor(word), y = frequency, group = 1)) + geom_l
 
 
 **a) Dimension reduction:** 
-For traditional methods, we will use document-wrod matrix as input. Although we use **sparse matrix** to store it, it is still "big". Thus we may try some dimension reduction methods:
+For traditional methods, we will use document-word matrix as input. Although we use **sparse matrix** to store it, it is still "big". Thus we may try some dimension reduction methods:
 
    + We tried **LDA (Linear Discriminant Analysis)** to project high-dimensional, sparse data to a low-dimensional, dense space, supervised by training data;
    + We also tried **ANOVA test** on every single word and keep the significant ones only, which can reduce the dimension from 6000 to 2000.
@@ -101,20 +101,16 @@ For NLP methods, they don't process data as matrix, thus their corresponding "di
 **a) Logistic regression**
 
 Firstly, we applied logistic regression. The logistic regression assume that data have the following distributions:$$ P(Y_i=j) = \frac{exp(x_i^T\beta_j)}{\sum_{m=1}^{k}exp(x_i^T\beta_m)}$$
-We want to maxmize the object function:$$max \ Likelihood = \Pi_{i=1}^{n} \Pi_{j=1}^{k}[P(Y_i=j)]^{1_{Y_i=j}}$$
-Or minimize the loss function:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)]$$
+We want to **maxmize** the object function:$$max \ Likelihood = \Pi_{i=1}^{n} \Pi_{j=1}^{k}[P(Y_i=j)]^{1_{Y_i=j}}$$
+Or **minimize** the loss function:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)]$$
 
-  **Logistic regression with penalty**
-
-Group lasso:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)] + \lambda \sum_{i=1}^{p} \sqrt{ \sum_{j=1}^{k} \beta_{i,j}^2 }$$
+  **Logistic regression with penalty,** Group lasso:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)] + \lambda \sum_{i=1}^{p} \sqrt{ \sum_{j=1}^{k} \beta_{i,j}^2 }$$
 
 **Why lasso?** Automatically feature selecting and easy for tunning.
 **Why group lasso?** If one word is useful to predict one class, it is also useful to predict others. (For example, "fire" is positive to class "burn", then it is somehow negative to other class.)
 
 
-**Application of Logistic Regression**
-
-We use sparse matrix as input to fit the logistic regression.
+**Application of Logistic Regression**: We use sparse matrix as input to fit the logistic regression.
 
 At first we use **cv.glmnet** to perform logistic regression, but it will warn us the **unconvergence** (due to huge data), and fail to do all the cross validation. (In fact, when data is big, cv.glmnet's stopping criteria seems to be somehow arbitary and we can't check the convergence. Its accuracy is also between 0.75 - 0.79).
 
