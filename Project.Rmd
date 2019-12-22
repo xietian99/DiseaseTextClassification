@@ -3,8 +3,8 @@ title: "Injury Records Text Classification"
 author: "XIE Tian, WANG Chang, WANG Sidi"
 date: "12/19/2019"
 output:
-  # html_document: default
   pdf_document: default
+  # html_document: default
   html_document: default
 ---
 
@@ -75,38 +75,35 @@ grid.arrange(img1, img2, ncol = 2)
 
 **a) Data Cleaning **
 
-In the text data cleaning part, we applied normal text-cleaning techniques including tranferring all letters into lower-cases, removing punctuations, word stemmming and word lemmatization. Specifically, the sex and gender information have been extracted in the dataset, so we remove the information by regular expression match.
+In the text data cleaning part, we applied common text-cleaning techniques including changing all letters into lower-cases, removing punctuations, word stemmming and word lemmatization. Specifically, the age and gender information were already included in the original dataset, therefore, we removed this information from "injury description" by regular expression matching.
 
-Our text data is scanned from hand-written records, there are some wrongly-scanned words and characters, and the preposition may matter in the classfication. So we create our own stopping words list excludinhg prepositions and including single characters. Finally we replace those mis-spelled word with original ones. 
-After cleaning, we get an injury records corpus with 6,000 vocabulary.
+Our text data is scanned from hand-written records, there are some wrongly-scanned words and characters, and the preposition may matter in the classfication. Thus, we created our own stopping words list which excludes prepositions and includes single characters. Finally, we replaced those mis-spelled words with the correct ones. 
+After cleaning, we produced an injury records corpus with 6,000 vocabulary.
 
 **b) Build Document-Term Matrix **  
-After cleaning the data, we get a cleaned-version text. AfteWe the build a document-term matrix, where each row is a injury record, each colum represents the voclabulary, and the element represent the vocabulary matrix.
-Since it's a huge matrix, we also store it in **sparse-matrix**.
 
-We then visulize if the dominant words differ among the 7 category, this help us to determine if such document-term matrix will work in later model.
-Below are two word cloud example for class 1: *Violence and other injuries by animals or person* and class 4: *Falls, slips, trips*
+After the cleaned-version text was generated, we built a document-term matrix, where each row is a injury record, each column represents one unique word from the vocabulary, and the elements represent the vocabulary matrix.
+Given that this matrix is very space-consuming, we transformed it into **sparse-matrix** form.
+
+We then visulized the high frequency words in each injury category to see whether the dominant words differ among the 7 categories. This helps us illustrate the effectiveness of our document-term matrix in subsequent model fitting process.
+Below are two word cloud examples for class 1: *Violence and other injuries by animals or person* and class 4: *Falls, slips, trips*
 
 ![Word Frequency Cloud for Different Categories](./wordcloud/WC1_WC4.png) 
 
 
-<<<<<<< HEAD
-**c) Dimension reduction** 
-
-For traditional methods, we will use document-wrod matrix as input. Although we use **sparse matrix** to store it, it is still "big". Thus we may try some dimension reduction methods:
-=======
 **a) Dimension reduction:** 
+
 For traditional methods, we will use document-word matrix as input. Although we use **sparse matrix** to store it, it is still "big". Thus we may try some dimension reduction methods:
->>>>>>> 81d0dfd5029d21dfd886edd2e1d9632ba3046b48
 
    + We tried **LDA (Linear Discriminant Analysis)** to project high-dimensional, sparse data to a low-dimensional, dense space, supervised by training data;
-   + We also tried **ANOVA test** on every single word and keep the significant ones only, which can reduce the dimension from 6000 to 2000.
-   + But both methods reduce the accuracy in fact, due to the loss of information. Considering **lasso penalty** can choose the informative feature automatically, we finally decided to use lasso penalty only rather than any other dimension reductions.
-For NLP methods, they don't process data as matrix, thus their corresponding "dimension reduction" is just different kinds of pre-processings.
+   + We also tried **ANOVA test** on every single word and kept the significant ones only, which can reduce the dimension from 6000 to 2000.
+   + But both methods reduced the accuracy in fact, due to the loss of information. Considering **lasso penalty** can choose the informative features automatically, we decided to use lasso penalty only rather than any other dimension reduction methods.
+   
+NLP methods do not process data as matrix, thus their corresponding "dimension reduction" is just different kinds of pre-processings.
 
 
 ### <span style = "color:purple">4. Models and Results </span> 
-We apply three representative method to this classification problem, where *logistic* methods are popular bacause of feasible interpretation, *Sequential NN* is a simple basic model with only 2 dense layers, and *BERT* is a complex pre-trained model.
+We applied three representative methods to this classification problem, where *logistic* methods are popular bacause of feasible interpretation, *Sequential NN* is a simple basic model with only 2 dense layers, and *BERT* is a complex pre-trained model.
 Below is the pipeline of our whole work. 
 
 ![Pipeline for the project](./plot/Pipeline.jpg)
@@ -120,14 +117,14 @@ Or **minimize** the loss function:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1
 
   **Logistic regression with penalty,** Group lasso:$$min \ Loss = -\sum_{i=1}^{n} \sum_{j=1}^{k}1_{Y_i=j}\times log[P(Y_i=j)] + \lambda \sum_{i=1}^{p} \sqrt{ \sum_{j=1}^{k} \beta_{i,j}^2 }$$
 
-We apply lasso to automatically select and tune features. Since if one word is useful to predict one class, it is also useful to predict others (e.g. “fire” is positive to class “burn”, then it is somehow negative to other class), we apply group lasso
+We applied lasso to automatically select features. If one word is useful to predict one class, it can also be useful to predict others (e.g. “fire” is positive to class “burn”, then it is somehow negative to other class). Given that the sparse matrix still have many useless feature (i.e. noise), we apply group lasso to conquer is issue.
 
 
 **Application of Logistic Regression**: We use sparse matrix as input to fit the logistic regression.
 
-At first we use **cv.glmnet** to perform logistic regression, but it will warn us the **unconvergence** (due to huge data), and fail to do all the cross validation. (In fact, when data is big, cv.glmnet's stopping criteria seems to be somehow arbitary and we can't check the convergence. Its accuracy is also between 0.75 - 0.79).
+At first we use **cv.glmnet** to perform logistic regression, but it warned us with **unconvergence** (due to huge data), and failed to conduct any cross validation. (In fact, when data is big, cv.glmnet's stopping criteria seems to be arbitary and we cannot check the convergence. Its accuracy is between 0.75 - 0.79).
 
-Thus we use **biostatistic cluster** to train the logistic model with **self-written codes**, we only show the result of an clustered-version logistic result here. Since we use group lasso with one additional penalty parameter $\lambda$, we show three results with different penalty in the following plot. (the training accuracy is not main concern, thus we show the test accuracy only)
+Thus we used the **biostatistic cluster** to train a logistic model with **self-written codes**, we only showed the result of one of the clustered-version logistic results here. Since we used group lasso with one additional penalty parameter $\lambda$, three results with different penalty were shown in the following figure (training accuracy is not the main concern, thus we presented the test accuracy only)
 
 ```{r, echo = FALSE, fig.align = "center", out.width = '55%'}
 
@@ -139,15 +136,15 @@ knitr::include_graphics("./plot/Logreg_acc.png")
 
 **Keras** is a high-level tool for coding and training **neural networks**. Here we use **Keras package** in r to fit a simple sequential model to our injury data. A **Neural Network** is a machine-learning algorithm made up of individual nodes called neurons. Neurons are arranged into a series of groups called **layers**. Nodes in each layer are connected to nodes in the following layer. Data flows from the input to the output along these connections.
 
-The easiest way to build a neural network is to use the **Sequential Model** class, which represents a linear stack of layers. Choosing the right training features is the key. A Neural Network containing two hidden layers is shown below on the left. We build a 2 dense layer network (only 1 hidden layer), the first one with dimension 300 and the last one with dimension 48.
+The easiest way to build a neural network is to use the **Sequential Model** class, which represents a linear stack of layers. Choosing the right training features is the key. A Neural Network containing two hidden layers is shown below on the left. We built a 2-dense-layer network (only 1 hidden layer), the first one with dimension 300 and the last one with dimension 48.
 
 
 ```{r, echo = FALSE, fig.align = "center"}
 
 # img3 <- rasterGrob(as.raster(readPNG("./Sequential NN/NotedNN.png")), interpolate = FALSE)
 # img3 <- rasterGrob(as.raster(readPNG("./Sequential NN/TextNN.png")), interpolate = FALSE)
-img3 <- rasterGrob(as.raster(readPNG("./Sequential NN/TextNN.png")), interpolate = FALSE)
-img4 <- rasterGrob(as.raster(readPNG("./Sequential NN/SNNplot.png")), interpolate = FALSE)
+img3 <- rasterGrob(as.raster(readPNG("./SequentialNN/TextNN.png")), interpolate = FALSE)
+img4 <- rasterGrob(as.raster(readPNG("./SequentialNN/SNNplot.png")), interpolate = FALSE)
 grid.arrange(img3, img4, ncol = 2)
 
 ```
@@ -155,9 +152,9 @@ Sequential Models of different layers have been fitted to categorize injury reco
 
 **c) Neural Network: BERT Pre-trained Model **
 
-**BERT** (Bidirectional Encoder Representations from Transformers) is another neural network model, and applying this pre-trained model to our dataset is a kind of **Transfer Learning**. This deep and narrow nueral network model (12 layer with maximum dim 1024) has been trained by Google on large and high-quality text dataset, and it has achived excellent performance in lots of NLP tasks. So in our specific model, when we initialize our model with the  **pre-trained** parameters, the model only need to be fine tuned, saving lots of training time.
+**BERT** (Bidirectional Encoder Representations from Transformers) is another neural network model, and applying this pre-trained model to our dataset is a kind of **Transfer Learning**. This deep and narrow nueral network model (12 layer with maximum dim 1024) has been trained by Google on large and high-quality text dataset, and it has achieved excellent performance in lots of NLP tasks. Hence, in our particular case, when we initialized our model with the **pre-trained** parameters, the model only needed to be fine tuned, saving enormous training time.
 
-Compared to the above two models, the input matrix representation here is rather complicated, including both the word, sentence and word position information. It's a huge nueral network with 1.2G parameter, in our small sample (10,000) dataset trial, at each epoch, the training time with batch size 60 is 90 minutes. So we finally train the model with **GPU** in google colab.
+Compared to the two models above, the input matrix representation here is rather complicated, including both word, sentence and word position information. It is a huge nueral network with 1.2G parameters. In our small sample (10,000 records) trial, the training time with batch size 60 is 90 minutes for running each epoch. To conduct it in a less time-consuming manner, we decided to train the model with **GPU** in google colab.
 
 After 7 epochs, the model seems to converge on test dataset with an accuracy of around 0.87.
 ```{r, echo = FALSE, fig.align = "center"}
@@ -169,14 +166,14 @@ grid.arrange(bert, bertTrain, ncol=2)
 
 **d) Comparison among Models **
 
-In experiments, the model precision and accuracy are recorded in order to make a comparison of different approaches. We'll use *Weighted-F1* score as model assessment.
-The input text represention of both traditional Logistic method and Sequential NN are the same, but the latter improves around 3% on both accuracy and weighted-F1 and runs 4.5 times faster than the former. Among all methods, BERT model performs best on the classification problem; since it is the most complicated model, it consumes the estimated longest time with a CPU, and runs satisfacorily with a **GPU**.   
+In experiments, the model precision and accuracy are recorded in order to carry out a comparison of different approaches. We will use *Weighted-F1* score as the metric for model assessment.
+The input text represention of both traditional Logistic method and Sequential NN are the same, but the latter improves around 3% on both accuracy and weighted-F1 and runs 4.5 times faster than the former. Among all methods, BERT model performs the best on this classification problem; since it is the most complicated model, it has the longest estimated running time on CPU, while runs satisfacorily with a **GPU**.   
 ```{r, echo=FALSE}
 res <- data.frame(
-   Train_Accuracy = c(0.80,0.89,0.91),
+   Train_Accuracy = c(0.80,0.89, 0.93),
    Test_Accuracy = c(0.80, 0.83, 0.87),
    Weighted_F1 = c(0.79, 0.82, 0.87),
-   Time = c("3h", "0.67h", "70h, 0.67h(GPU)"), 
+   Time = c("3h", "0.67h", "70h; 0.67h(GPU)"), 
    row.names = c("Logistic", "SequentialNN", "BERT")
 )
 kable(res, format = "latex",booktabs=TRUE) %>%
@@ -185,12 +182,15 @@ kable(res, format = "latex",booktabs=TRUE) %>%
 
 
 ### <span style = "color:purple">5. Conclusion and Future Work</span>
-In this injury records classification project, different models have been applied and evaluated. At the exploratory stage, we tried various prevailing traditional and deep learning methods in classification tasks, and finnaly focused on Logistic, Sequential NN and BERT models.
+In this injury records classification project, different models have been applied and evaluated. At the exploratory stage, we explored various prevailing traditional and deep learning methods for classification purpose, and eventually focused on Logistic, Sequential NN and BERT models.
 
-For a natural language problem, explainning the model may be complicated, since all vocabulary, word position and sentence as a whole may matter for the objective. BERT model makes full use of each injury records information, and achieves best result; however it's also the least efficient method. 
+For a natural language problem, explaining the model may be complicated, since all vocabulary, word position and sentence as a whole may matter for the objective. BERT model makes full use of the information in each injury records, and achieves best result; however it is also the least efficient method. 
 
 In Logistic model, only vocabulary frequency information are used and there are 6000 predictors (vocabularies). Even with *Group Lasso* there are lots of significant words for each injury category. Compared to the other two methods, its performance are not satisfactory.
 
-In Sequential NN we only build a basic model with 2 dense layer along with activation layer. It shows an excellent improvement on both weighted-F1 socre and efficiency compared with traditional Logitistic method. It's input matrix are also just document-term matrix, which shows that vocablary itself matters a lot in our classification problem. 
+In Sequential NN we only build a basic model with 2 dense layer along with the activation layer. It shows an excellent improvement on both weighted-F1 socre and efficiency compared with traditional Logitistic method. Its input matrix are also just document-term matrix, which shows that vocablary itself matters a lot in our classification problem. 
 
-We may expect improvement on both logistic and the Sequential NN model by introducing pre-trained word embeddings in data pre-processing part. For example, before feeding into models, we can project the high-dimension input matrix to low-dimension space with *Word2Vec*, *Doc2Vec* or *Glove*.
+We may expect improvement on both logistic and the Sequential NN model by introducing pre-trained word embeddings in data pre-processing part. For example, before feeding data into models, we can project the high-dimension input matrix to low-dimension space with *Word2Vec*, *Doc2Vec* or *Glove*.
+
+
+**Project Github**: <https://github.com/xietian99/DiseaseTextClassification>

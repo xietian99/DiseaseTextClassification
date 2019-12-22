@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  22 DEC 2019 04:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.9)  22 DEC 2019 11:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -806,7 +806,7 @@ Package xcolor Warning: Incompatible color definition on input line 216.
 
 Package xcolor Warning: Incompatible color definition on input line 216.
 
-<Project_files/figure-latex/unnamed-chunk-4-1.pdf, id=28, 469.755pt x 162.6075p
+<Project_files/figure-latex/unnamed-chunk-4-1.pdf, id=24, 469.755pt x 162.6075p
 t>
 File: Project_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use Project_files/figure-latex/unnamed-chunk-4-1.pdf>
@@ -817,106 +817,103 @@ Package pdftex.def Info: Project_files/figure-latex/unnamed-chunk-4-1.pdf  used
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Proje
 ct_files/figure-latex/unnamed-chunk-4-1.pdf>]
-<./wordcloud/WC1_WC4.png, id=52, 1027.84pt x 310.15875pt>
+<./wordcloud/WC1_WC4.png, id=48, 1027.84pt x 310.15875pt>
 File: ./wordcloud/WC1_WC4.png Graphic file (type png)
 <use ./wordcloud/WC1_WC4.png>
-Package pdftex.def Info: ./wordcloud/WC1_WC4.png  used on input line 269.
+Package pdftex.def Info: ./wordcloud/WC1_WC4.png  used on input line 272.
 (pdftex.def)             Requested size: 469.75385pt x 141.75189pt.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 292.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 285.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 310.
-
+<./plot/Pipeline.jpg, id=50, 889.3225pt x 178.6675pt>
+File: ./plot/Pipeline.jpg Graphic file (type jpg)
+<use ./plot/Pipeline.jpg>
+Package pdftex.def Info: ./plot/Pipeline.jpg  used on input line 314.
+(pdftex.def)             Requested size: 469.75099pt x 94.37434pt.
 [2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.317 
-       <./wordcloud/WC1_WC4.png>]
-<./plot/Pipeline.jpg, id=65, 889.3225pt x 178.6675pt>
-File: ./plot/Pipeline.jpg Graphic file (type jpg)
-<use ./plot/Pipeline.jpg>
-Package pdftex.def Info: ./plot/Pipeline.jpg  used on input line 320.
-(pdftex.def)             Requested size: 469.75099pt x 94.37434pt.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 328.
+l.320 F
+       irstly, we applied logistic regression. The logistic regression assume <
+./wordcloud/WC1_WC4.png>]
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 322.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 328.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 322.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 328
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 322
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 328
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 322
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 328.
+(Font)              <9> on input line 322.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 328.
+(Font)              <6> on input line 322.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 328.
-LaTeX Font Info:    Try loading font information for U+msa on input line 328.
+(Font)              <5> on input line 322.
+LaTeX Font Info:    Try loading font information for U+msa on input line 322.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 328.
+LaTeX Font Info:    Try loading font information for U+msb on input line 322.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-<./plot/Logreg_acc.png, id=66, 548.0475pt x 422.57875pt>
+<./plot/Logreg_acc.png, id=60, 548.0475pt x 422.57875pt>
 File: ./plot/Logreg_acc.png Graphic file (type png)
 <use ./plot/Logreg_acc.png>
-Package pdftex.def Info: ./plot/Logreg_acc.png  used on input line 358.
+Package pdftex.def Info: ./plot/Logreg_acc.png  used on input line 353.
 (pdftex.def)             Requested size: 258.36844pt x 199.21815pt.
 [3pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.358 ...inewidth]{./plot/Logreg_acc} \end{center}
+l.353 ...inewidth]{./plot/Logreg_acc} \end{center}
                                                    <./plot/Pipeline.jpg>]
-<Project_files/figure-latex/unnamed-chunk-6-1.pdf, id=80, 469.755pt x 124.465pt
+<Project_files/figure-latex/unnamed-chunk-6-1.pdf, id=74, 469.755pt x 124.465pt
 >
 File: Project_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use Project_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: Project_files/figure-latex/unnamed-chunk-6-1.pdf  used
- on input line 378.
+ on input line 373.
 (pdftex.def)             Requested size: 469.75386pt x 124.46469pt.
-<Project_files/figure-latex/unnamed-chunk-7-1.pdf, id=81, 469.755pt x 156.585pt
+<Project_files/figure-latex/unnamed-chunk-7-1.pdf, id=75, 469.755pt x 156.585pt
 >
 File: Project_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use Project_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Project_files/figure-latex/unnamed-chunk-7-1.pdf  used
- on input line 409.
+ on input line 405.
 (pdftex.def)             Requested size: 469.75386pt x 156.58461pt.
 [4 <./plot/Logreg_acc.png> <./Project_files/figure-latex/unnamed-chunk-6-1.pdf>
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 413--422
+Underfull \hbox (badness 10000) in paragraph at lines 409--418
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 425.
+(Font)              <10> on input line 421.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 425.
+(Font)              <7> on input line 421.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 468.
 [5 <./Project_files/figure-latex/unnamed-chunk-7-1.pdf>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 468.
@@ -924,40 +921,39 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 468.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 468.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 468.
 Package rerunfilecheck Info: File `Project.out' has not changed.
-(rerunfilecheck)             Checksum: D40646C62C636D5EFCD8BFA5B1FFA0CE;1977.
+(rerunfilecheck)             Checksum: 75E07EAB6D737D8265D0DF528A695BAF;921.
  ) 
 Here is how much of TeX's memory you used:
- 14848 strings out of 492616
- 216222 string characters out of 6129482
- 342218 words of memory out of 5000000
- 18411 multiletter control sequences out of 15000+600000
- 65081 words of font info for 96 fonts, out of 8000000 for 9000
+ 14845 strings out of 492616
+ 215817 string characters out of 6129481
+ 341818 words of memory out of 5000000
+ 18405 multiletter control sequences out of 15000+600000
+ 59433 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 35i,9n,38p,1079b,394s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 35i,9n,38p,815b,398s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
 cal/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/20
 19/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2019/texmf-d
 ist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2019/texmf-dist/fonts/
 enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/
 lm-ec.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx10.pfb>
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2019/texmf-
-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/
-type1/public/lm/lmmi6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
-c/lm/lmmi9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr10.
-pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr5.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2019/texmf-
-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
-ype1/public/lm/lmri12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
-c/lm/lmri9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy9.
-pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on Project.pdf (5 pages, 2267446 bytes).
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local
+/texlive/2019/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2019/texmf-d
+ist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
+ype1/public/lm/lmmi9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
+/lm/lmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr17.p
+fb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr5.pfb></usr/loc
+al/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2019/texmf-di
+st/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
+ype1/public/lm/lmri9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
+/lm/lmsy9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtk10.
+pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
+Output written on Project.pdf (5 pages, 2242509 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
- 129 compressed objects within 2 object streams
- 20 named destinations out of 1000 (max. 500000)
- 14415 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
+ 18 named destinations out of 1000 (max. 500000)
+ 14407 words of extra memory for PDF output out of 17280 (max. 10000000)
 
