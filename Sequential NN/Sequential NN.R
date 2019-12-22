@@ -21,7 +21,8 @@ model <- keras_model_sequential() %>%
   layer_dense(hidden_dims) %>%
   layer_dropout(0.3) %>%
   layer_activation("relu") %>%
-  layer_dense(units = 48, activation = 'softmax') %>% compile(
+  layer_dense(units = 48, activation = 'softmax') %>% 
+  compile(
     loss = "categorical_crossentropy",
     optimizer = "adam",
     metrics = "accuracy"
